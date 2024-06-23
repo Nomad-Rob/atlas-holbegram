@@ -6,7 +6,7 @@ import 'dart:io' show Platform;
 import '../screens/login_screen.dart';
 import '../screens/signup_screen.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (!Platform.isLinux) {
     await Firebase.initializeApp(
