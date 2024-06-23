@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:holbegram/widgets/text_field.dart';
+import '../screens/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final TextEditingController emailController;
@@ -102,56 +103,29 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Forgot your login details? '),
-                      Text(
-                        'Get help logging in',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 24),
-                  Divider(thickness: 2),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Don't have an account? "),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Sign up',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(218, 226, 37, 24),
+                      Text("Don't have an account? "),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignUpScreen(
+                                emailController: TextEditingController(),
+                                usernameController: TextEditingController(),
+                                passwordController: TextEditingController(),
+                                passwordConfirmController: TextEditingController(),
+                              ),
                             ),
+                          );
+                        },
+                        child: Text(
+                          'Sign up',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(218, 226, 37, 24),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Flexible(child: Divider(thickness: 2)),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text('OR'),
                       ),
-                      Flexible(child: Divider(thickness: 2)),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.network(
-                        'https://img.icons8.com/color/452/google-logo.png',
-                        width: 40,
-                        height: 40,
-                      ),
-                      Text(' Sign in with Google'),
                     ],
                   ),
                 ],

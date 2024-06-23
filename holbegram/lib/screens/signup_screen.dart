@@ -55,7 +55,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
             Image.asset(
-              '../assets/images/logo.png',
+              'assets/images/logo.png',
               width: 80,
               height: 60,
             ),
@@ -139,10 +139,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => LoginScreen(
-                              emailController: TextEditingController(),
-                              passwordController: TextEditingController(),
-                            )),
+                            MaterialPageRoute(
+                              builder: (context) => LoginScreen(
+                                emailController: TextEditingController(),
+                                passwordController: TextEditingController(),
+                              ),
+                            ),
                           );
                         },
                         child: Text(
