@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../screens/login_screen.dart';
 import '../widgets/text_field.dart';
 import '../methods/auth_methods.dart';
+import 'auth/upload_image_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   final TextEditingController emailController;
@@ -124,23 +125,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           Color.fromARGB(218, 226, 37, 24),
                         ),
                       ),
-                      onPressed: () async {
-                        String res = await AuthMethods().signUpUser(
-                          email: widget.emailController.text,
-                          password: widget.passwordController.text,
-                          username: widget.usernameController.text,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddPicture(
+                              email: widget.emailController.text,
+                              password: widget.passwordController.text,
+                              username: widget.usernameController.text,
+                            ),
+                          ),
                         );
-
-                        if (res == "success") {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Sign up successful')),
-                          );
-                          // Navigate to home screen
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text(res)),
-                          );
-                        }
                       },
                       child: Text(
                         'Sign Up',

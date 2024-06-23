@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'methods/user_storage.dart';
+import '../../methods/auth_methods.dart';
 
 class AddPicture extends StatefulWidget {
   final String email;
@@ -88,16 +89,22 @@ class _AddPictureState extends State<AddPicture> {
           ElevatedButton(
             onPressed: () async {
               if (_image != null) {
-                String photoUrl = await StorageMethods().uploadImageToStorage(
-                  false,
-                  'profilePics',
-                  _image!,
+                String res = await AuthMethods().signUpUser(
+                  email: widget.email,
+                  password: widget.password,
+                  username: widget.username,
+                  file: _image,
                 );
-                // Save the photoUrl to the user profile
-                // You can also navigate to another screen
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Profile picture updated')),
-                );
+
+                if (res == "success") {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Sign up successful')),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(res)),
+                  );
+                }
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('Please select an image')),
